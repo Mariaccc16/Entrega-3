@@ -1,5 +1,9 @@
 // Nombre: María Camila Serrato
-// Descripción: El sol asciende mientras el cielo se aclara. Pajaritos vuelan libremente y rebotan en los bordes.
+// Código: 202410329
+// Descripción: Paisaje de una casa en la colina. Imitación de un amanecer y atardecer en loop infinito.
+// El sol sube y baja de forma continua mientras el cielo cambia de color.
+// Los pájaros vuelan libremente en la parte superior del cielo, rebotando en los bordes.
+
 
 //Definir variables
 
@@ -37,10 +41,13 @@ void setup() {
   // Inicializar cada pájaro con posiciones, velocidad y dirección aleatoria
 
   for (int i = 0; i < numBirds; i++) {
-    birdX[i] = random(width);
+    
+    birdX[i] = random(width); // pájaros viajan de lado a lado
     birdY[i] = random(height / 2); // pájaros bajan solo hasta la mitad del canvas
+    
     velocidadX[i] = random(0.5, 1.5);
     velocidadY[i] = random(0.5, 1);
+    
     direccionX[i] = random(1) > 0.5 ? 1 : -1;
     direccionY[i] = random(1) > 0.5 ? 1 : -1;
   }
@@ -51,7 +58,9 @@ void draw() {
   // El fondo cambia de color según la posición del sol:
   // Cielo se aclara mientras el sol sube y oscurece al bajar
 
-  float cieloBrillo = map(solY, 400, 100, 120, 210);
+//                    si solY está 400 color es 120, si esta en 100 el color es 210
+//                    map(valor, minOriginal, maxOriginal, minNuevo, maxNuevo)     
+  float cieloBrillo = map(solY,     400,         100,        120,      210);
   background(cieloBrillo, cieloBrillo + 40, cieloBrillo + 255);
 
   // Sol
@@ -80,7 +89,7 @@ void draw() {
   rect(casaX, casaY, 100, 80);
   fill(54, 72, 74);
   triangle(casaX - 10, casaY, casaX + 50, casaY - 40, casaX + 110, casaY);
-  fill(94, 38, 18);
+  fill(50, 38, 18);
   rect(casaX + 35, casaY + 30, 30, 50);
 
   // Pajaritos volando
@@ -100,7 +109,7 @@ void draw() {
 
     // Rebote cuando llega arriba O abajo
 
-    if (birdY[i] > height / 2     || birdY[i] < 0) {
+    if (birdY[i] > height / 2     || birdY[i] <= 0) {
       direccionY[i] = direccionY[i] * -1;
     }
 
