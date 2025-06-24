@@ -41,13 +41,13 @@ void setup() {
   // Inicializar cada pájaro con posiciones, velocidad y dirección aleatoria
 
   for (int i = 0; i < numBirds; i++) {
-    
+
     birdX[i] = random(width); // pájaros viajan de lado a lado
     birdY[i] = random(height / 2); // pájaros bajan solo hasta la mitad del canvas
-    
+
     velocidadX[i] = random(0.5, 1.5);
     velocidadY[i] = random(0.5, 1);
-    
+
     direccionX[i] = random(1) > 0.5 ? 1 : -1;
     direccionY[i] = random(1) > 0.5 ? 1 : -1;
   }
@@ -58,9 +58,9 @@ void draw() {
   // El fondo cambia de color según la posición del sol:
   // Cielo se aclara mientras el sol sube y oscurece al bajar
 
-//                    si solY está 400 color es 120, si esta en 100 el color es 210
-//                    map(valor, minOriginal, maxOriginal, minNuevo, maxNuevo)     
-  float cieloBrillo = map(solY,     400,         100,        120,      210);
+  //                    si solY está 400 color es 120, si esta en 100 el color es 210
+  //                    map(valor, minOriginal, maxOriginal, minNuevo, maxNuevo)
+  float cieloBrillo = map(solY, 400, 100, 120, 210);
   background(cieloBrillo, cieloBrillo + 40, cieloBrillo + 255);
 
   // Sol
